@@ -1,16 +1,18 @@
 const producer = require("../../kafka.js").producer;
 const config = require("../../config.js");
-const objectHash = require("object-hash");
 
-// async function recordLog(log) {
 async function recordLog(log) {
   try {
-    producer.send({
+    await producer.send({
       topic: config.kafka.topic,
       messages: [
         {
-          key: objectHash(log),
-          value: JSON.stringify(log),
+          key: log.id,
+          value: JSON.stringify({
+            level: log.level,
+            message: log.message,
+            timestamp: log.timestamp,
+          }),
         },
       ],
     });
