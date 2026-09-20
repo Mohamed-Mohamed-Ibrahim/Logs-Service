@@ -1,11 +1,23 @@
-const producer = require("../../api.js").producer;
+const producer = require("../../kafka.js").producer;
 const config = require("../../config.js");
+const objectHash = require("object-hash");
 
+// async function recordLog(log) {
 async function recordLog(log) {
-  await producer.send({
-    topic: config.kafka.topic,
-    messages: [log],
-  });
+  try {
+    producer.send({
+      topic: config.kafka.topic,
+      messages: [
+        {
+          key: objectHash(log),
+          value: JSON.stringify(log),
+        },
+      ],
+    });
+  } catch (error) {
+    console.error("Failed to send Kafka message:", error);
+    throw error;
+  }
 }
 
 module.exports = {
