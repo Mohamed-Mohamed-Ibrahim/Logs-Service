@@ -1,6 +1,9 @@
 const express = require("express");
 const morgan = require("morgan");
+
 const { startKafka } = require("./kafka.js");
+const { runWorker } = require("./utils.js");
+const { connectToDatabase } = require("./mongodb.js");
 const loggingRoutes = require("./application/controllers/logging-controller.js");
 
 const app = express();
@@ -9,19 +12,20 @@ const port = 3000;
 async function init() {
   try {
     await startKafka();
-    setTimeout(() => {
-      console.log("Kafka producer and consumer connected successfully");
-    }, 1000);
+    await connectToDatabase();
+    await runWorker();
   } catch (error) {
-    console.error("Failed to connect Kafka producer and consumer:", error);
+    console.error("Failed to start the server:", error);
     process.exit(1);
   }
 }
-init();
+init().then(() => {
+  console.log("------------------------------------------------------------");
+});
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(morgan("dev"));
-console.log("Kafka xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx:");
+
 app.use("/logging", loggingRoutes);
 
 app.get("/health", (req, res) => {
@@ -29,7 +33,7 @@ app.get("/health", (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`Express server listening on port ${port}`);
+  console.log(`Server is running on port ${port}`);
 });
 
 module.exports = {

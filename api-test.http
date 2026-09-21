@@ -1,0 +1,14 @@
+### Health Check
+
+
+GET http://localhost:3000/
+
+### Logging Endpoint
+
+POST http://localhost:3000/logging/ 
+Content-Type: application/json
+
+{
+    "level": "info",
+    "message": "This is a test log message"
+}
