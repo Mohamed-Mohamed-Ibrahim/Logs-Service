@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
+const config = require("./config.js");
 
-const dbURI = "mongodb://127.0.0.1:27017/";
+const dbURI = config.mongo.url;
 
 async function connectToDatabase() {
   try {
