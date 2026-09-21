@@ -13,7 +13,8 @@ const kafka = new Kafka({
   logLevel: logLevel.ERROR,
 });
 let buffer = [];
-const consumer = kafka.consumer({ groupId: `${crypto.randomUUID()}` });
+// const consumer = kafka.consumer({ groupId: `${crypto.randomUUID()}` });
+const consumer = kafka.consumer({ groupId: config.kafka.consumerId });
 
 async function processMessage() {
   await consumer.connect();
