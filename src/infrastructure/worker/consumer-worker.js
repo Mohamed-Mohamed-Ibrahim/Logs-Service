@@ -6,7 +6,7 @@ const mongoose = require("mongoose");
 const config = require("../../config.js");
 const Log = require("../../domain/entities/log.js");
 
-const dbURI = "mongodb://127.0.0.1:27017/";
+const dbURI = config.mongo.url;
 
 const kafka = new Kafka({
   brokers: [config.kafka.broker],
