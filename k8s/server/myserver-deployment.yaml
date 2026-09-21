@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose --file docker-compose.yml convert
+    kompose.version: 1.38.0 (a8f5d1cbd)
+  labels:
+    io.kompose.service: myserver
+  name: myserver
+spec:
+  initContainers:
+    - name: wait-for-kafka
+      image: busybox:latest
+      command:
+        [
+          "sh",
+          "-c",
+          "until nc -z kafka-service 9092; do echo waiting for kafka; sleep 2; done;",
+        ]
+    - name: wait-for-mongo
+      image: busybox:latest
+      command:
+        [
+          "sh",
+          "-c",
+          "until nc -z mongo-service 27017; do echo waiting for mongo; sleep 2; done;",
+        ]
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: myserver
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose --file docker-compose.yml convert
+        kompose.version: 1.38.0 (a8f5d1cbd)
+      labels:
+        io.kompose.service: myserver
+    spec:
+      containers:
+        - image: log-service:v1.0
+          name: myserver
+          ports:
+            - containerPort: 3000
+              protocol: TCP
+      restartPolicy: Always
