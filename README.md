@@ -70,5 +70,6 @@ watch kubectl get all
    2. Usage of a `buffer` to send logs to Mongodb while the pub/sub would be better, but I think `setInterval` is enough for such application.
 5. Server Pod waiting for kafka and mongodb
    1. Making server pod waits for kafka and mongodb using init containers in pod.
-
-### References
+6. Mongodb Index
+   1. The index is added to the level field.
+   2. Multiple indices degrade performance; therefore, I have stop thinking at this point.
