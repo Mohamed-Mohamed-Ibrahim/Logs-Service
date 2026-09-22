@@ -13,8 +13,8 @@ services:
       KAFKA_CONTROLLER_LISTENER_NAMES: "CONTROLLER"
       KAFKA_LOG_DIRS: "/var/lib/kafka/data"
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
-      CLUSTER_ID: ${CLUSTER_ID}
-    restart: unless-stopped
+      CLUSTER_ID: ${KAFKA_CLUSTER_ID}
+    # restart: unless-stopped
     networks:
       - backend
 
@@ -30,7 +30,7 @@ services:
       - backend
 
   myserver:
-    image: log-service:latest
+    image: log-service:v1.0
     container_name: myserver
     depends_on:
       - mykafka

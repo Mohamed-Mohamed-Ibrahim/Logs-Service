@@ -1,7 +1,7 @@
 ### Health Check
 
 
-GET http://localhost:3000/
+GET http://localhost:3000/health
 
 ### Logging Endpoint
 
@@ -12,3 +12,11 @@ Content-Type: application/json
     "level": "info",
     "message": "This is a test log message"
 }
+
+### Filtering Endpoint
+
+GET http://localhost:3000/filtering/2026-09-21T04:00:00.00Z/2026-09-21T04:30:00.00Z
+
+### Paginated Endpoint
+
+GET http://localhost:3000/filtering?page=1&limit=2
