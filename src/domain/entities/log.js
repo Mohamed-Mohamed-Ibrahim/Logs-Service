@@ -5,6 +5,7 @@ const logSchema = new Schema({
   level: {
     type: String,
     required: true,
+    index: true,
   },
   message: {
     type: String,
