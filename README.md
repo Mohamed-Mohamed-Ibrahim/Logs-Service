@@ -14,7 +14,9 @@ A scalable event-driven microservice using Node.js,Express and Kafka for real-ti
 
 `docker` and `docker desktop` must be installed.
 
-#### Build image
+#### Build image 
+
+`OR` the latest image on docker hub will be pulled. 
 
 ```bash
 docker build -t log-service:v1.0 .
@@ -28,9 +30,16 @@ kubectl apply -f k8s/ -R
 
 #### Start ingress controller
 
+##### Docker Desktop
 ```bash
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.10.1/deploy/static/provider/baremetal/deploy.yaml
 ```
+`OR`
+##### Minikube
+```bash
+minikube addons enable ingress
+```
+
 
 #### Add ip address of VM in your machine in `hosts` file
 

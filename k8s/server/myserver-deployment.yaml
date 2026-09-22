@@ -38,12 +38,12 @@ spec:
               "until nc -z mymongodb 27017; do echo waiting for mongo; sleep 2; done;",
             ]
       containers:
-        - image: log-service:v1.0
+        - image: mohamedmohamedibrahim/log-service:v1.0
           name: myserver
           ports:
             - containerPort: 3000
               protocol: TCP
           envFrom:
             - configMapRef:
-                name: app-config
+                name: my-config
       restartPolicy: Always
