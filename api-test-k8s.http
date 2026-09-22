@@ -1,24 +1,23 @@
 ### Health Check
-
-
-GET http://loggingservice.com:31812/health
+GET http://loggingservice.com:31473/health
 
 ### Logging Endpoint
-
-POST http://loggingservice.com:31812/logging/ 
+POST http://loggingservice.com:31473/logging/ 
 Content-Type: application/json
 
 {
-    "level": "info",
+    "level": "INFO",
     "message": "This is a test log message"
 }
 
-### Filtering Endpoint
+### Filtering by level
+GET http://loggingservice.com:31473/filtering/INFO
 
-GET http://loggingservice.com:31812/filtering/2026-09-21T04:00:00.00Z/2026-09-21T04:30:00.00Z
+### Filtering by timestamp
+GET http://loggingservice.com:31473/filtering/2026-09-21T04:00:00.00Z/2026-09-21T04:30:00.00Z
+
+### Filtering by level and timestamp
+GET http://loggingservice.com:31473/filtering/INFO/2026-09-21T04:00:00.00Z/2026-09-21T04:30:00.00Z
 
 ### Paginated Endpoint
-
-GET http://loggingservice.com:31812/filtering?page=1&limit=2
-
-ngrok http 192.168.49.2:80 --traffic-policy-file policy.yml
+GET http://loggingservice.com:31473/filtering?page=1&limit=2

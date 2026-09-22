@@ -1,8 +1,8 @@
 ### Health Check
-GET http://localhost:3000/health
+GET https://unfixable-sustained-onset.ngrok-free.dev/health
 
 ### Logging Endpoint
-POST http://localhost:3000/logging/ 
+POST https://unfixable-sustained-onset.ngrok-free.dev/logging/ 
 Content-Type: application/json
 
 {
@@ -11,13 +11,13 @@ Content-Type: application/json
 }
 
 ### Filtering by level
-GET http://localhost:3000/filtering/INFO
+GET https://unfixable-sustained-onset.ngrok-free.dev/filtering/INFO
 
 ### Filtering by timestamp
-GET http://localhost:3000/filtering/2026-09-21T04:00:00.00Z/2026-09-21T04:30:00.00Z
+GET https://unfixable-sustained-onset.ngrok-free.dev/filtering/2026-09-22T17:10:49.016Z/2026-09-22T17:11:59.016Z
 
 ### Filtering by level and timestamp
-GET http://localhost:3000/filtering/INFO/2026-09-21T04:00:00.00Z/2026-09-21T04:30:00.00Z
+GET https://unfixable-sustained-onset.ngrok-free.dev/filtering/INFO/2026-09-21T04:00:00.00Z/2026-09-21T04:30:00.00Z
 
 ### Paginated Endpoint
-GET http://localhost:3000/filtering?page=1&limit=2
+GET https://unfixable-sustained-onset.ngrok-free.dev/filtering?page=1&limit=10
