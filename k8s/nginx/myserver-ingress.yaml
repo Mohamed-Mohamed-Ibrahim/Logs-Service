@@ -7,10 +7,11 @@ spec:
   rules:
     - http:
         paths:
-          - path: /health
+          - path: /
             pathType: Prefix
             backend:
               service:
                 name: myserver
                 port:
                   number: 3000
+

@@ -23,8 +23,6 @@ services:
     container_name: mymongodb
     ports:
       - "27017:27017"
-    volumes:
-      - /home/meudm/Desktop/Eyego-Task/data:/data/db
     restart: unless-stopped
     networks:
       - backend
@@ -39,6 +37,8 @@ services:
       - "3000:3000"
     networks:
       - backend
+    env_file:
+      - .env
 
 networks:
   backend:
