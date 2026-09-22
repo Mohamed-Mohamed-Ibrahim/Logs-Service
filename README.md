@@ -41,10 +41,16 @@ minikube addons enable ingress
 ```
 
 
-#### Add ip address of ingress controller in your machine in `hosts` file
+#### Add ip address in `hosts` file
 
+##### Docker Desktop
+```bash
+127.0.0.1               loggingservice.com
 ```
-<ip-address>    loggingservice.com
+`OR`
+##### Minikube
+```
+<ingress-ip-address>    loggingservice.com
 ```
 
 Open Any broswer and go to `http://loggingservice.com/health`
