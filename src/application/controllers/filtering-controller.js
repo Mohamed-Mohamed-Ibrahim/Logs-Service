@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Log = require("../../domain/entities/log");
 const { paginatedResults } = require("../../utils.js");
-const { LogLevel } = require("../../domain/value-objects/loglevel.js");
+const LogLevel = require("../../domain/value-objects/loglevel.js");
 
 router.get("/", paginatedResults(Log), (req, res) => {
   console.log("Received log request:", req.body);
@@ -33,9 +33,12 @@ router.get("/:startDate/:endDate", paginatedResults(Log), (req, res) => {
 });
 
 router.get("/:level", paginatedResults(Log), (req, res) => {
-  console.log("Received log request:", req.body);
+  console.log("Received log request:", req.params.level);
   const level = req.params.level;
-  if (!LogLevel[level]) {
+  console.log(LogLevel);
+  console.log(level);
+  console.log(LogLevel[level]);
+  if (!(level in LogLevel)) {
     return res.status(400).json({ message: "Invalid log level" });
   }
 
@@ -56,7 +59,7 @@ router.get("/:level/:startDate/:endDate", paginatedResults(Log), (req, res) => {
   if (isNaN(startRange) || isNaN(endRange) || startRange > endRange) {
     return res.status(400).json({ message: "Invalid date format" });
   }
-  if (!LogLevel[level]) {
+  if (!(level in LogLevel)) {
     return res.status(400).json({ message: "Invalid log level" });
   }
 

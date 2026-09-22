@@ -17,16 +17,6 @@ const logSchema = new Schema({
   },
 });
 
-// class LogClass {
-//   constructor({ level, message, timestamp }) {
-//     this.level = level;
-//     this.message = message;
-//     this.timestamp = timestamp;
-//   }
-// }
-
-// logSchema.loadClass(LogClass);
-
 const Log = mongoose.model("Log", logSchema);
 
 module.exports = Log;
