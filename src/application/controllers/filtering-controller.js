@@ -15,6 +15,9 @@ router.get("/:startDate/:endDate", paginatedResults(Log), (req, res) => {
   console.log("Received log request:", req.body);
   const startRange = new Date(req.params.startDate);
   const endRange = new Date(req.params.endDate);
+  if (isNaN(startRange) || isNaN(endRange) || startRange > endRange) {
+    return res.status(400).json({ message: "Invalid date format" });
+  }
   const dateQuery = {
     timestamp: {
       $gte: startRange,
