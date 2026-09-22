@@ -1,0 +1,11 @@
+apiVersion: v1
+data:
+  KAFKA_BROKER: mykafka:9092
+  KAFKA_CLUSTER_ID: cluster-id
+  KAFKA_CONSUMER_ID: consumer-id
+  KAFKA_TOPIC: test-topic
+  MONGO_URI: mongodb://mymongodb:27017/
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: my-config
