@@ -1,4 +1,4 @@
-# Logs Service
+# Real-Time-Activity-Logger
 
 A scalable event-driven microservice using Node.js,Express and Kafka for real-time processing.
 
