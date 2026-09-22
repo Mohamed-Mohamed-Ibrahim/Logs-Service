@@ -1,4 +1,4 @@
-const producer = require("../../kafka.js").producer;
+const { producer } = require("../../kafka.js");
 const config = require("../../config.js");
 
 async function recordLog(log) {
@@ -16,6 +16,7 @@ async function recordLog(log) {
         },
       ],
     });
+    return "Log successfully created";
   } catch (error) {
     console.error("Failed to send Kafka message:", error);
     throw error;
