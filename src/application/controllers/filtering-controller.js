@@ -32,6 +32,22 @@ router.get("/:startDate/:endDate", paginatedResults(Log), (req, res) => {
   })();
 });
 
+router.get("/:level", paginatedResults(Log), (req, res) => {
+  console.log("Received log request:", req.body);
+  const level = req.params.level;
+  if (!LogLevel[level]) {
+    return res.status(400).json({ message: "Invalid log level" });
+  }
+
+  const dateQuery = {
+    level: level,
+  };
+  (async () => {
+    const ret = await Log.find(dateQuery);
+    console.log("Filtered logs:", ret);
+    res.json({ message: "Logs successfully retrieved", data: ret });
+  })();
+});
 router.get("/:level/:startDate/:endDate", paginatedResults(Log), (req, res) => {
   console.log("Received log request:", req.body);
   const startRange = new Date(req.params.startDate);
