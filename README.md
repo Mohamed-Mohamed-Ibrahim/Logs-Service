@@ -41,7 +41,7 @@ minikube addons enable ingress
 ```
 
 
-#### Add ip address of VM in your machine in `hosts` file
+#### Add ip address of ingress controller in your machine in `hosts` file
 
 ```
 <ip-address>    loggingservice.com
